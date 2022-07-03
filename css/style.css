@@ -1,0 +1,492 @@
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: inherit;
+}
+
+@font-face {
+  font-family: Corporate-A-Bold;
+  /* Как будет называтся наш шрифт */
+  font-style: normal;
+  /* косое или прямое написание шрифта */
+  font-weight: 700;
+  /* жирность шрифта */
+  src: url(../fonts/Corporate-A-Bold.woff2) format('woff2'),
+    url(../fonts/Corporate-A-Bold.woff) format(woff);
+
+  /* указываю место нашего шрифта и указываю его формат */
+}
+/* добавление шрифтов из папки проекта */
+
+body {
+  background: linear-gradient(180deg, #070a1b 0%, #2a3170 100%);
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size: 16px;
+  line-height: 120%;
+  font-weight: 400;
+  color: #fff;
+
+  /* в основном записываются какие то стили который котируются на весь сайт  */
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  /* inherit означает наследовать значение у родителя */
+}
+
+img {
+  max-width: 100%;
+}
+/* при уменьшении размера чтобы картинки уменьщались для адаптива */
+button {
+  background-color: transparent;
+  /* чтобы у всех кнопок фон был прозрачный */
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+ul {
+  list-style: none;
+}
+
+.header {
+  background: #070a1b;
+  /* Указываем хедеру и футеру черный цвет чтобы гридиент в боди считался от них */
+}
+
+.container {
+  max-width: 1220px;
+  /* при уменьшении размеров на других устройствах появиться нижний скрол,этого нельзя допустить и для того чтобы такого не допустить нужно писать max-width это означает что если есть такая возможность то будет ширина 1200 */
+  /* так как мы задали падинги по бокам по 10 нужно добавить и ширину 20 px */
+  margin: 0 auto;
+  /* Чтобы блок стал по центру */
+  padding: 0 10px;
+  /* мы задали это св-во падиннга для того чтобы создать место при сужении экрана на других устройствах и тогда иконки не будут прилипать к границам устройства */
+}
+
+.header__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100px;
+}
+
+.header__logo {
+  margin-left: 115px;
+  /* сдвинули влево чтобы стало по центру ровно лого мерседес */
+}
+
+.list {
+  display: flex;
+}
+
+.list__item + .list__item {
+  margin-left: 30px;
+}
+/* т.е отталкивается от первого на 30  */
+
+.list__link {
+  width: 40px;
+  height: 40px;
+  /* Размеры иконок */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  transition: all 0.5s;
+  /* задается не ховеру */
+}
+
+.list__link:hover {
+  background-color: #c1a1d2;
+  /* Задний фон иконок */
+}
+
+.header__content {
+  background-image: url(../images/header-bg.png);
+  /* добавили картинку на задний фон */
+  min-height: calc(100vh - 100px);
+  /* нашу картинку нужно растянуть на всю ширину монитора для этого существует 100vh(100vh задает всю ширину монитора) и отнимаем 100px нашу высоту header-top */
+  background-repeat: no-repeat;
+  /* чтобы картинка не размножалась,ее нужно указывать всегда */
+  background-position: center;
+  /* тоже всегда указывать потому что бывает монитор маленький и размеры могут слететь и картинка всегда будет увеличина с центра картинки */
+  background-size: cover;
+  /* чтобы максимально растянулось */
+  display: flex;
+  /* h1 и p становятся рядом друг с другом потому что они в header__content */
+  flex-direction: column;
+  /* Это позволяет ими манипулировать  */
+  align-items: center;
+  justify-content: flex-end;
+  position: relative;
+  /* связываем с лого бмв */
+}
+
+.header__content::before {
+  content: '';
+  background-image: url(../images/decor.svg);
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  left: 50%;
+  /* на 50% но учитывается и сам лого */
+  transform: translateX(-50%);
+  /* поэтому мы выставляем transform и теперь он ровно по центру */
+  bottom: -25px;
+  /* и опускаем лого ниже на 25px */
+}
+
+.title {
+  font-family: Corporate-A-Bold;
+  /* Задали шрифт который подключили из папки */
+  margin-bottom: 5px;
+  /* расстояние между них и p */
+  font-size: 72px;
+  line-height: 120%;
+  /* высоту тоже задаем хоть она у нас записана и в body так как это h1 то лучше указать */
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.title-descr {
+  font-size: 24px;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  margin-bottom: 50px;
+  /* считаем относительно конца а не значка бмв */
+}
+
+.concept {
+  padding-top: 150px;
+  /* отступаем от header 150 px вверх,хотя так неверно и нужно было header добавить margin-bottom 150 потому что отступы идут от верха к низу т.е правильнее было бы header margin-bottom 150px было прописать */
+  margin-bottom: 150px;
+  /* а тут отступаем вниз от следующего нижнего блока */
+}
+
+.concept__inner {
+  max-width: 900px;
+  margin-left: auto;
+  /* наш блок отодвинется в правую сторону */
+}
+
+.section__title {
+  margin-bottom: 25px;
+  /* Отступ идет вниз */
+  text-transform: uppercase;
+  font-size: 18px;
+  font-family: Corporate-A-Bold;
+  color: #f402a2;
+}
+
+.concept__text {
+  font-size: 24px;
+  margin-bottom: 25px;
+  line-height: 120%;
+  /* почему мы опять прописали 120 % ведь это указано в body?
+  потому что в body указано это на размер 16px а здесь он поменялся на 24 и выходит не состыковка */
+}
+
+.premier {
+  margin-bottom: 150px;
+  /* расстояние до следующего элемента  */
+}
+
+.premier__inner {
+  display: flex;
+  gap: 60px;
+  /* расстояние между двумя блоками колумн */
+}
+
+.premier__text {
+  margin-bottom: 23px;
+  /* Расстояние между параграфами смотрим сами через фигму */
+}
+
+.premier__img {
+  margin-bottom: 20px;
+}
+
+.premier__btn {
+  font-family: Corporate-A-Bold;
+  text-transform: uppercase;
+  display: block;
+  width: 100%;
+  font-size: 18px;
+  line-height: 120%;
+  color: #f402a2;
+  text-align: center;
+  padding: 14px;
+  border: 1px solid #f402a2;
+  transition: all 0.5s;
+}
+
+.premier__btn:hover {
+  border: 1px solid #53a1cb;
+  color: #53a1cb;
+}
+
+.video {
+  margin-bottom: 150px;
+}
+
+.video__img {
+  margin-bottom: 25px;
+}
+
+.video__btn {
+  font-family: Corporate-A-Bold;
+  text-transform: uppercase;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  /* почему не center, чтобы выровнять позиционирование ровное кнопки и текста */
+  gap: 10px;
+  /* Определили расстояние между картинкой и текстом */
+  width: 100%;
+  font-size: 18px;
+  line-height: 120%;
+  color: #f402a2;
+  padding: 14px;
+  border: 1px solid #f402a2;
+  transition: all 0.5s;
+}
+
+.video__btn span {
+  padding-top: 2px;
+}
+
+.video__btn:hover {
+  border: 1px solid #53a1cb;
+  color: #53a1cb;
+}
+
+.video__btn path {
+  transition: all 0.5s;
+}
+/* Тут мы указали чтобы скорость изменения цвета соответсвовала скорости изменения цвета бордеров */
+
+.video__btn:hover path {
+  fill: #53a1cb;
+}
+/* Так мы обратились к path который меняет цвет картинки */
+
+.design__interior {
+  display: grid;
+  grid-template-columns: 255px 255px auto 330px;
+  /* Здесь мы описали ширину каждого блока которого не знаем задали авто */
+  grid-template-rows: auto auto;
+  /* здесь мы указали сколько строк есть их 2  */
+  gap: 14px 44px;
+  margin-bottom: 100px;
+}
+
+.design__cell-one {
+  grid-row: 1/3;
+}
+
+.design__cell-two {
+  grid-row-end: -1;
+  display: flex;
+  align-items: flex-end;
+}
+
+.design__cell-three {
+  grid-column-end: -1;
+  grid-row-end: -1;
+  display: flex;
+  align-items: flex-end;
+}
+
+.design__interior-img {
+  grid-column: 2/-1;
+}
+
+.design__cell-text {
+  margin-bottom: 15px;
+}
+
+.design-slider img {
+  margin: 0 30px;
+  /* Расстояние между картинками в слайдере */
+}
+
+.slick-track {
+  margin-left: -30px;
+}
+
+.design-slider {
+  padding-bottom: 25px;
+}
+
+.arrow {
+  position: absolute;
+  z-index: 10;
+  cursor: pointer;
+  bottom: 0;
+  left: 50%;
+}
+
+.arrow-left {
+  transform: translateX(-80px);
+}
+
+.arrow-right {
+  transform: translateX(30px);
+}
+
+.desigh__box {
+  max-width: 590px;
+  /* Данный блок не находиться в контейнере и поэтому его ширина составляет 
+  255 один блок 255 другой блок и расстояние gap между ними 60 и мы еще плюсуем паддинги */
+  margin: 150px auto;
+  /* Выравниваем по центру блоки и задаем расстояние от верха до низа 150 */
+  padding: 0 10px;
+  display: flex;
+  gap: 60px;
+}
+
+.desigh__box-column {
+  width: 255px;
+  /* Задали ширину для выравнивание каждой колонки текста */
+}
+
+.desigh__box-text {
+  margin-bottom: 15px;
+  /* Отступы между параграфами вниз */
+}
+
+.desigh__img {
+  max-width: 100%;
+  display: block;
+  object-fit: cover;
+  /* аналог background-size */
+}
+
+.footer {
+  background: #070a1b;
+  /* Указываем хедеру и футеру черный цвет чтобы гридиент в боди считался от них */
+}
+
+.footer__inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 300px;
+  margin: 0 auto;
+}
+@media (max-width: 1366px) {
+  .footer__inner {
+    height: 150px;
+  }
+}
+
+@media (max-width: 1020px) {
+  .design__interior {
+    display: block;
+  }
+  .design__interior-img {
+    width: 100%;
+    margin-bottom: 25px;
+  }
+  .design__cell-three .design__interior-img {
+    max-width: 100%;
+    width: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .header__logo {
+    margin-left: 0;
+    padding-right: 60px;
+  }
+  .logo__img {
+    width: 180px;
+  }
+  .list__item + .list__item {
+    margin-left: 15px;
+  }
+  .list__link {
+    width: 35px;
+    height: 35px;
+  }
+  .title {
+    font-size: 55px;
+  }
+  .title-descr {
+    font-size: 18px;
+  }
+  .concept {
+    padding-top: 75px;
+    margin-bottom: 75px;
+  }
+  .concept__text {
+    font-size: 16px;
+  }
+  .premier__inner {
+    display: block;
+  }
+  .premier,
+  .video {
+    margin-bottom: 75px;
+  }
+  .premier__img {
+    width: 100%;
+    margin-top: 25px;
+  }
+  .desigh__box {
+    margin: 75px auto;
+    display: block;
+  }
+  .desigh__box-column {
+    width: 100%;
+  }
+}
+/* Весь CSS который я буду писать внутри будет применянтся только когда экран станет меньше 1000px
+Медия запросы должны писаться в самом низу
+max-width 1000px означает что это все экраны 1000px и меньше
+min-width 1000px означает чтобы это применялось от 1000px и больше
+Определяем размер секции хедер до какого размера все хорошо примерно это выходит 768px */
+
+@media (max-width: 620px) {
+  .footer__inner {
+    flex-wrap: wrap;
+    align-content: center;
+  }
+  .footer .list {
+    width: 100%;
+    margin-top: 0;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 520px) {
+  .header__top {
+    flex-wrap: wrap;
+    align-content: center;
+    margin: 0;
+  }
+
+  .list {
+    justify-content: center;
+    padding-top: 10px;
+    width: 100%;
+  }
+  .title {
+    font-size: 34px;
+  }
+  .footer__inner {
+    flex-direction: column;
+    padding-top: 10px;
+  }
+}
+
+@media (max-width: 360px) {
+  .slick-track {
+    margin-left: 0;
+  }
+}
